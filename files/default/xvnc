@@ -1,0 +1,43 @@
+#!/bin/sh
+### BEGIN INIT INFO
+# Provides:          xvnc
+# Required-Start:    $remote_fs
+# Required-Stop:     $remote_fs
+# Should-Start:      xvnc
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Xvnc
+### END INIT INFO
+
+PID_FILE=/run/Xvnc.pid
+
+cmd() {
+  action="--$1"
+  shift
+  start-stop-daemon $action  \
+    --pidfile $PID_FILE   \
+    --exec /usr/bin/Xvnc  \
+    --name Xvnc           \
+    --chuid 1000          \
+    --make-pidfile        \
+    "$@"
+}
+
+case "$1" in
+  start)
+    cmd start --background -- :0 -geometry 1440x900 -SecurityTypes None
+    ;;
+
+  stop)
+    cmd stop
+    ;;
+
+  status)
+    cmd status
+    ;;
+
+  *)
+    echo "Unknown option $1"
+    ;;
+esac
+

@@ -1,0 +1,44 @@
+#!/bin/sh
+### BEGIN INIT INFO
+# Provides:          icewm
+# Required-Start:    xvnc
+# Required-Stop:     xvnc
+# Should-Start:      icewm
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Ice Window Manager
+### END INIT INFO
+
+PID_FILE=/run/icewm.pid
+export DISPLAY=:0
+
+cmd() {
+  action="--$1"
+  shift
+  start-stop-daemon $action  \
+    --pidfile $PID_FILE   \
+    --exec /usr/bin/icewm \
+    --name icewm          \
+    --chuid 1000          \
+    --make-pidfile        \
+    "$@"
+}
+
+case "$1" in
+  start)
+    cmd start --background
+    ;;
+
+  stop)
+    cmd stop
+    ;;
+
+  status)
+    cmd status
+    ;;
+
+  *)
+    echo "Unknown option $1"
+    ;;
+esac
+
