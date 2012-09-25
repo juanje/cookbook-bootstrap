@@ -18,7 +18,7 @@ include_recipe 'apt'
 
 # Install and configure databases
 include_recipe 'mongodb'
-include_recipe 'postgresql'
+include_recipe 'postgresql::server'
 
 # Install and configure RVM
 include_recipe 'rvm::user'
