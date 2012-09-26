@@ -1,6 +1,7 @@
 # Some handy vars
 user_home = "/home/#{node['bootstrap']['user']}"
 user_gemrc = "#{user_home}/.gemrc"
+user_bashrc = "#{user_home}/.bashrc"
 
 # Create the aentos user
 user node['bootstrap']['user'] do
@@ -24,3 +25,8 @@ file user_gemrc do
   content node['bootstrap']['gem_options']
 end
 
+conf_plain_file user_bashrc do
+  pattern   /export DISPLAY=:0/
+  new_line  'export DISPLAY=:0'
+  action :insert_if_no_match
+end

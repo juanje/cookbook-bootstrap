@@ -9,7 +9,7 @@ version          "0.0.9"
   supports os
 end
 
-%w{ mongodb postgresql rvm apt sudo }.each do |os|
+%w{ mongodb postgresql rvm apt sudo conf }.each do |os|
   depends os
 end
 
