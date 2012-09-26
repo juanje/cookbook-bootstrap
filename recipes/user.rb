@@ -23,6 +23,7 @@ end
 # Create a .gemrc for the aentos user
 file user_gemrc do
   content node['bootstrap']['gem_options']
+  action :create_if_missing
 end
 
 conf_plain_file user_bashrc do
