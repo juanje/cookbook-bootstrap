@@ -1,7 +1,3 @@
-# This gem is required for the user resource to use passwords
-chef_gem 'ruby-shadow'
-
-
 # Some handy vars
 rvm_src_path = "/home/#{node['bootstrap']['user']}/.rvm/src"
 

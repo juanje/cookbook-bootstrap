@@ -1,3 +1,6 @@
+# This gem is required for the user resource to use passwords
+chef_gem 'ruby-shadow'
+
 # Some handy vars
 user_home = "/home/#{node['bootstrap']['user']}"
 user_gemrc = "#{user_home}/.gemrc"
