@@ -35,3 +35,9 @@ conf_plain_file user_bashrc do
   new_line  'export DISPLAY=:0'
   action :insert_if_no_match
 end
+
+# Add a custom PS1 var to the .bashrc file
+conf_plain_file user_bashrc do
+  new_line node['bootstrap']['ps1']
+  action :append
+end
