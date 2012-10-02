@@ -8,7 +8,7 @@ default['bootstrap']['password'] = '$1$q0ic4MNE$T55nMWfHyZfPeuz2dMoKY1'
 default['bootstrap']['shell'] = '/bin/bash'
 
 # Dependencies
-default['bootstrap']['packages'] = %w{icewm vnc4server firefox vim screen tmux git}
+default['bootstrap']['packages'] = %w{icewm vnc4server firefox vim screen tmux git bash-completion}
 
 # System scripts and settings
 default['bootstrap']['init_scripts'] = %w{icewm xvnc}
