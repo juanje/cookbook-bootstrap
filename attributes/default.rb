@@ -22,4 +22,4 @@ default['bootstrap']['rubies'] = [
   }
 ]
 default['bootstrap']['gem_options'] = 'gem: --no-rdoc --no-ri -V'
-default['bootstrap']['ps1'] = "PS1='\[\e[36m\]\u@\h \[\e[32m\][$rvm_env_string] \[\e[35m\]($(git symbolic-ref HEAD 2> /dev/null | xargs -r basename))\[\e[36m\] \w\$\[\e[m\] '"
+default['bootstrap']['ps1'] = %q{PS1='\[\e[36m\]\u@\h \[\e[32m\][$rvm_env_string] \[\e[35m\]($(git symbolic-ref HEAD 2> /dev/null | xargs -r basename))\[\e[36m\] \w\$\[\e[m\] '}
