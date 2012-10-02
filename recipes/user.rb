@@ -29,6 +29,7 @@ file user_gemrc do
   action :create_if_missing
 end
 
+# Add export DISPLAY=:0 to the .bashrc file if it doesn't have it yet
 conf_plain_file user_bashrc do
   pattern   /export DISPLAY=:0/
   new_line  'export DISPLAY=:0'
