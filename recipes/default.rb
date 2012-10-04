@@ -35,8 +35,8 @@ node['bootstrap']['init_scripts'].each do |script|
     supports :status => true, :start => true, :stop => true
   end
 
-  cookbook_file "/etc/init.d/#{script}" do
-    source   script
+  template "/etc/init.d/#{script}" do
+    source   "#{script}.erb"
     mode     '0755'
     notifies :enable, "service[#{script}]"
     notifies :start, "service[#{script}]"
