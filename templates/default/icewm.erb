@@ -19,7 +19,7 @@ cmd() {
     --pidfile $PID_FILE   \
     --exec /usr/bin/icewm \
     --name icewm          \
-    --chuid 1000          \
+    --chuid <%= node['bootstrap']['uid'] %>          \
     --make-pidfile        \
     "$@"
 }
