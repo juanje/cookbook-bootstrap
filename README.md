@@ -20,6 +20,7 @@ Requirements
 * rvm
 * mongodb
 * postgresql
+* conf
 
 Usage
 =====
