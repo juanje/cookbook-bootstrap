@@ -6,6 +6,10 @@ default['bootstrap']['gid'] = 1000
 # openssl passwd -1 "aentos"
 default['bootstrap']['password'] = '$1$q0ic4MNE$T55nMWfHyZfPeuz2dMoKY1'
 default['bootstrap']['shell'] = '/bin/bash'
+default['bootstrap']['postgresql_password'] = 'aentos'
+
+include_attribute 'postgresql'
+node.set['postgresql']['password']['postgres'] = node['bootstrap']['postgresql_password']
 
 # Dependencies
 default['bootstrap']['packages'] = %w{icewm vnc4server firefox vim screen tmux git bash-completion}
