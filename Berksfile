@@ -1,7 +1,7 @@
 site :opscode
 
 cookbook 'mongodb'
-cookbook 'postgresql'
+cookbook 'postgresql', '= 2.0.0'
 cookbook 'apt'
 cookbook 'sudo'
 cookbook 'conf'
