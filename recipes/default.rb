@@ -2,9 +2,9 @@
 rvm_src_path = "/home/#{node['bootstrap']['user']}/.rvm/src"
 
 # Set some RVM attributes
-node['rvm']['user_installs'] = [ {'user' => node['bootstrap']['user']} ]
-node['rvm']['user_default_ruby'] = node['bootstrap']['default_ruby']
-node['rvm']['user_rubies'] = node['bootstrap']['rubies']
+node.set['rvm']['user_installs'] = [ {'user' => node['bootstrap']['user']} ]
+node.set['rvm']['user_default_ruby'] = node['bootstrap']['default_ruby']
+node.set['rvm']['user_rubies'] = node['bootstrap']['rubies']
 
 # We need to create and configure the aentos user before to install RVM
 include_recipe 'aentos-bootstrap::user'
