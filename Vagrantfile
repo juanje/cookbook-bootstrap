@@ -22,7 +22,7 @@ Vagrant::Config.run do |config|
 
   config.vm.network :hostonly, "192.168.122.61"
 
-  config.vm.provision :shell, :inline => "/opt/chef/embedded/bin/gem search -i chef -v 10.14.4 || sudo /opt/chef/embedded/bin/gem install chef -v 10.14.4 --no-rdoc --no-ri"
+  config.vm.provision :shell, :inline => "/opt/chef/embedded/bin/gem search -i chef -v 10.16.2 || sudo /opt/chef/embedded/bin/gem install chef -v 10.16.2 --no-rdoc --no-ri"
 
   config.vm.provision :chef_solo do |chef|
     chef.log_level = :debug if ENV['DEBUG']
