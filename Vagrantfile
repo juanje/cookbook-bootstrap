@@ -12,8 +12,8 @@ end
 
 
 Vagrant::Config.run do |config|
-  config.vm.box = "opscode-ubuntu-12.04"
-  config.vm.box_url = "https://opscode-vm.s3.amazonaws.com/vagrant/boxes/opscode-ubuntu-12.04.box"
+  config.vm.box = "opscode-ubuntu-12.04-i386.box"
+  config.vm.box_url = "https://opscode-vm.s3.amazonaws.com/vagrant/boxes/opscode-ubuntu-12.04-i386.box"
   cache_dir = local_cache(config.vm.box)
 
   config.vm.share_folder "v-cache",
