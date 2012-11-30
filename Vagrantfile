@@ -1,3 +1,5 @@
+require 'berkshelf/vagrant'
+
 def local_cache(box_name)
   cache_dir = File.join(File.expand_path(Vagrant::Environment::DEFAULT_HOME),
                         'cache',
