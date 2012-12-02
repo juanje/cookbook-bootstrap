@@ -1,11 +1,18 @@
 # User info
-default['bootstrap']['user'] = 'aentos'
-default['bootstrap']['uid'] = 1000
-default['bootstrap']['gid'] = 1000
-# NOTE: The password hash was created with:
-# openssl passwd -1 "aentos"
-default['bootstrap']['password'] = '$1$q0ic4MNE$T55nMWfHyZfPeuz2dMoKY1'
-default['bootstrap']['shell'] = '/bin/bash'
+if node.has_key? 'instance_role' and node['instance_role'] == 'vagrant'
+  default['bootstrap']['user'] = 'vagrant'
+  default['bootstrap']['uid'] = 999
+  default['bootstrap']['gid'] = 999
+else
+  default['bootstrap']['user'] = 'aentos'
+  default['bootstrap']['uid'] = 1000
+  default['bootstrap']['gid'] = 1000
+  # NOTE: The password hash was created with:
+  # openssl passwd -1 "aentos"
+  default['bootstrap']['password'] = '$1$q0ic4MNE$T55nMWfHyZfPeuz2dMoKY1'
+  default['bootstrap']['shell'] = '/bin/bash'
+end
+
 default['bootstrap']['postgresql_password'] = 'aentos'
 
 include_attribute 'postgresql'
