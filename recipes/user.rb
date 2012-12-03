@@ -6,14 +6,16 @@ user_home = "/home/#{node['bootstrap']['user']}"
 user_gemrc = "#{user_home}/.gemrc"
 user_bashrc = "#{user_home}/.bashrc"
 
-# Create the aentos user
-user node['bootstrap']['user'] do
-  uid      node['bootstrap']['uid']
-  gid      node['bootstrap']['gid']
-  home     user_home
-  shell    node['bootstrap']['shell']
-  password node['bootstrap']['password']
-  supports :manage_home => true
+unless node.has_key? 'instance_role' and node['instance_role'] == 'vagrant'
+  # Create the aentos user
+  user node['bootstrap']['user'] do
+    uid      node['bootstrap']['uid']
+    gid      node['bootstrap']['gid']
+    home     user_home
+    shell    node['bootstrap']['shell']
+    password node['bootstrap']['password']
+    supports :manage_home => true
+  end
 end
 
 # Add the aentos user to the sudoers with NOPASSWD
