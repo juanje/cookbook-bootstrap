@@ -12,22 +12,21 @@ end
 
 
 Vagrant::Config.run do |config|
-  config.vm.box = "opscode-ubuntu-12.04"
-  config.vm.box_url = "https://opscode-vm.s3.amazonaws.com/vagrant/boxes/opscode-ubuntu-12.04.box"
+  config.vm.box = "ubuntu-12.04-nfs-i386"
+  config.vm.box_url = "http://github.com/downloads/juanje/bento/ubuntu-12.04-nfs-i386.box"
+
   cache_dir = local_cache(config.vm.box)
+  config.vm.share_folder "v-cache", "/var/cache/apt/archives/", cache_dir, :nfs => true
 
-  config.vm.share_folder "v-cache",
-                         "/var/cache/apt/archives/",
-                         cache_dir
+  config.vm.share_folder "v-code", "/vagrant-nfs", "../", :nfs => true
+  config.bindfs.bind_folder "/vagrant-nfs", "/mnt/code/"
 
-  config.vm.host_name = "project" 
-
-  config.vm.network :hostonly, "192.168.122.61"
-
-  config.vm.provision :shell, :inline => "/opt/chef/embedded/bin/gem search -i chef -v 10.16.2 || sudo /opt/chef/embedded/bin/gem install chef -v 10.16.2 --no-rdoc --no-ri"
+  config.vm.network :hostonly, "33.33.33.10"
 
   config.vm.provision :chef_solo do |chef|
     chef.log_level = :debug if ENV['DEBUG']
+
+    chef.nfs = true
 
     chef.run_list = [
       "recipe[aentos-bootstrap]"
