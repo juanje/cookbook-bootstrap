@@ -30,7 +30,7 @@ Vagrant::Config.run do |config|
     chef.log_level = :debug if ENV['DEBUG']
 
     chef.run_list = [
-      "recipe[aentos-bootstrap]"
+      "recipe[bootstrap]"
     ]
   end
 end

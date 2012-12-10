@@ -7,7 +7,7 @@ node.set['rvm']['user_default_ruby'] = node['bootstrap']['default_ruby']
 node.set['rvm']['user_rubies'] = node['bootstrap']['rubies']
 
 # We need to create and configure the aentos user before to install RVM
-include_recipe 'aentos-bootstrap::user'
+include_recipe 'bootstrap::user'
 
 # Update apt cache
 include_recipe 'apt'
