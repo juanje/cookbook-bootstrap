@@ -19,7 +19,7 @@ include_attribute 'postgresql'
 node.set['postgresql']['password']['postgres'] = node['bootstrap']['postgresql_password']
 
 # Dependencies
-default['bootstrap']['packages'] = %w{icewm vnc4server firefox vim screen tmux git bash-completion}
+default['bootstrap']['packages'] = %w{icewm vnc4server firefox vim screen tmux git bash-completion openjdk-7-jre-headless}
 
 # System scripts and settings
 default['bootstrap']['init_scripts'] = %w{icewm xvnc}
