@@ -6,6 +6,12 @@ node.set['rvm']['user_installs'] = [ {'user' => node['bootstrap']['user']} ]
 node.set['rvm']['user_default_ruby'] = node['bootstrap']['default_ruby']
 node.set['rvm']['user_rubies'] = node['bootstrap']['rubies']
 
+# Trying out suggested fix for issue where chef hangs forever installing RVM
+# https://github.com/wayneeseguin/rvm/issues/1280
+# https://github.com/fnichol/chef-rvm/issues/133
+node.set["rvm"]["version"] = "1.16.16"
+node.set["rvm"]["branch"]  = "none"
+
 # We need to create and configure the aentos user before to install RVM
 include_recipe 'bootstrap::user'
 
