@@ -4,8 +4,6 @@ chef_gem 'ruby-shadow'
 unless node.has_key? 'instance_role' and node['instance_role'] == 'vagrant'
   # Create the aentos user
   user node['user_name'] do
-    uid      node['bootstrap']['uid']
-    gid      node['bootstrap']['gid']
     home     node['user_home']
     shell    node['bootstrap']['shell']
     password node['bootstrap']['password']
