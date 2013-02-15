@@ -1,4 +1,5 @@
 require 'berkshelf/vagrant'
+require 'json'
 
 def local_cache(box_name)
   cache_dir = File.join(File.expand_path(Vagrant::Environment::DEFAULT_HOME),
@@ -28,9 +29,19 @@ Vagrant::Config.run do |config|
 
   config.vm.provision :chef_solo do |chef|
     chef.log_level = :debug if ENV['DEBUG']
+    # Default run_list
+    run_list = [ "recipe[bootstrap]" ]
 
-    chef.run_list = [
-      "recipe[bootstrap]"
-    ]
+    # Load solo.json config if it exists
+    if File.exists? 'solo.json'
+      json = JSON.load(IO.read('solo.json'))
+
+      # solo.json could contain a run_list. We need to remove it from the json config
+      # and put its value as the new run_list
+      run_list = json.delete 'run_list' if json.include? 'run_list'
+
+      chef.json = json
+    end
+    chef.run_list = run_list
   end
 end
