@@ -10,6 +10,7 @@
 ### END INIT INFO
 
 PID_FILE=/run/Xvnc.pid
+UID=$(id -u <%= node['bootstrap']['user'] %>)
 
 cmd() {
   action="--$1"
@@ -18,7 +19,7 @@ cmd() {
     --pidfile $PID_FILE   \
     --exec /usr/bin/Xvnc  \
     --name Xvnc           \
-    --chuid <%= node['bootstrap']['uid'] %>          \
+    --chuid $UID          \
     --make-pidfile        \
     "$@"
 }

@@ -10,6 +10,7 @@
 ### END INIT INFO
 
 PID_FILE=/run/icewm.pid
+UID=$(id -u <%= node['bootstrap']['user'] %>)
 export DISPLAY=:0
 
 cmd() {
@@ -19,7 +20,7 @@ cmd() {
     --pidfile $PID_FILE   \
     --exec /usr/bin/icewm \
     --name icewm          \
-    --chuid <%= node['bootstrap']['uid'] %>          \
+    --chuid $UID          \
     --make-pidfile        \
     "$@"
 }
