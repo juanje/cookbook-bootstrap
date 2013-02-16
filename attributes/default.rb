@@ -33,15 +33,24 @@ default['bootstrap']['packages']['base'] = %w{
   vim screen tmux git bash-completion
 }
 default['bootstrap']['packages']['testing'] = %w{
-  icewm vnc4server firefox
+  icewm vnc4server
 }
 default['bootstrap']['packages']['java'] = %w{
   openjdk-7-jre-headless
 }
 default['bootstrap']['packages']['extra'] = []
 
-# System scripts and settings
+# Firefox
+default['bootstrap']['firefox']['mode'] = 'packages'
+default['bootstrap']['firefox']['packages'] = %w{ libgtk2.0-0 libpango1.0-0 }
+default['bootstrap']['firefox']['url'] = "http://download.cdn.mozilla.net/pub/mozilla.org/firefox/releases/18.0.2/linux-#{node['kernel']['machine']}/en-US/firefox-18.0.2.tar.bz2"
+if node['kernel']['machine'] == 'x86_64'
+  default['bootstrap']['firefox']['md5sum'] = '685c7337c97b56b02ca1c589588309328b5b7db834f3c5978eecdb0f359c3d95'
+else
+  default['bootstrap']['firefox']['md5sum'] = 'd2cd02bf406a94acc1b18e555b5ae45d809893e21495ca5a9ecd8cce94af4d6f'
+end
 
+# System scripts and settings
 default['bootstrap']['init_scripts'] = %w{
   icewm xvnc
 }
