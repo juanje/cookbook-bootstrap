@@ -18,7 +18,10 @@ end
 # Load optiona recipes
 include_recipe 'mongodb' if node['bootstrap']['mongodb']
 include_recipe 'postgresql::server' if node['bootstrap']['postgresql']
-include_recipe 'bootstrap::testing' if node['bootstrap']['testing']
+if node['bootstrap']['testing']
+  include_recipe 'bootstrap::testing'
+  include_recipe 'bootstrap::firefox'
+end
 
 if node['bootstrap']['java']
   node['bootstrap']['packages']['java'].each do |pkg|
